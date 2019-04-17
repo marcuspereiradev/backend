@@ -4,6 +4,9 @@ const path = require('path');
 
 const app = express();
 
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 mongoose.connect('', {
   useNewUrlParser: true
 });
@@ -16,7 +19,7 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')));
 
 app.use(require('./routes'));
 
-app.listen(port, 'localhost', (err) => {
+server.listen(port, 'localhost', (err) => {
   if (err) {
     console.log('Server could not be started!');
   } else {
