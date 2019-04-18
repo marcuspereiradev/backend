@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -13,7 +16,7 @@ io.on('connection', socket => {
   })
 });
 
-mongoose.connect('', {
+mongoose.connect('mongodb+srv://omnistackdb:marcus10@cluster0-fa981.mongodb.net/test?retryWrites=true', {
   useNewUrlParser: true
 });
 
